@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <style>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+                *{
+            font-family: "Poppins", sans-serif;
+        }
         html, body {
             height: 100%;
+            width: 100%;
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
@@ -15,15 +19,29 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        /* Video background */
+        .video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
         }
         .container {
             width: 80%;
-            max-width: 600px;
-            background: white;
+            max-width: 450px;
+            background: rgba(255, 255, 255, 0.9);
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
         h2, h3 {
             color: #1b5e20;
@@ -50,13 +68,20 @@
     </style>
 </head>
 <body>
+    <video class="video-bg" autoplay loop muted>
+        <source src="background.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
     <div class="container">
         <h2>Welcome to E-Voting</h2>
         <p id="welcomeMessage"></p>
         <h3>Vote for Your Candidate</h3>
-        <button onclick="vote('Candidate A')">Vote for Candidate A</button>
-        <button onclick="vote('Candidate B')">Vote for Candidate B</button>
-        <button onclick="logout()">Logout</button>
+        <button onclick="vote('NARAYAN RAO RANE SAHEB')">Vote for NARAYAN RAO RANE SAHEB</button>
+        <button onclick="vote('VINAYAK RAUT FALTU')">Vote for VINAYAK RAUT FALTU'</button>
+        <button onclick="vote('NITESH RANE SAHEB')">Vote for NITESH RANE SAHEB</button>
+        <button onclick="vote('NILESH RANE SAHEB')">Vote for NILESH RANE SAHEB</button>
+        <button onclick="logout()" style="background-color: red; width: 100px;">Logout</button>
     </div>
 
     <script>
