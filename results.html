@@ -17,9 +17,7 @@
             font-family: Arial, sans-serif;
             background-color: #e8f5e9; /* Light green background */
             color: #2e7d32; /* Dark green text */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+ 
             align-items: center;
         }
         .container {
@@ -73,13 +71,22 @@
         .clear-button:hover {
             background-color: darkred;
         }
-
+        .maincontainer{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      img{
+        margin: 5px;
+      }
     </style>
 </head>
-<body>
+<body>    <a href="/index.html"><img src="/homeicon.png" alt="home" height="36px" /></a>
 
 
-
+<div class="maincontainer">
     <div class="container">
         <h2>Voting Results</h2>
         <table>
@@ -92,6 +99,7 @@
         <button onclick="clearResults()" class="clear-button">Clear Data</button>
         <button onclick="logoutAdmin()">Logout</button>
     </div>
+</div>
 
     <script>
         function checkAdmin() {
