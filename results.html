@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting Results</title>
+    <style>
+        /* Ensure full height */
+        html, body { 
+            height: 100%; 
+            margin: 0; 
+            padding: 0; 
+            font-family: Arial, sans-serif;
+            background-color: #e8f5e9; /* Light green background */
+            color: #2e7d32; /* Dark green text */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h2 {
+            color: #1b5e20;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #81c784;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #388e3c;
+            color: white;
+        }
+        td {
+            background-color: #f1f8e9;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            width: 100%;
+            max-width: 200px;
+            border: none;
+            background-color: #388e3c;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2e7d32;
+        }
+        .clear-button {
+            background-color: red;
+        }
+        .clear-button:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Voting Results</h2>
+        <table>
+            <tr>
+                <th>Candidate</th>
+                <th>Votes</th>
+            </tr>
+            <tbody id="resultsTable"></tbody>
+        </table>
+        <button onclick="clearResults()" class="clear-button">Clear Data</button>
+        <button onclick="logoutAdmin()">Logout</button>
+    </div>
+
+    <script>
+        function checkAdmin() {
+            if (localStorage.getItem("isAdmin") !== "true") {
+                alert("Access Denied! Admin Login Required.");
+                window.location.href = "admin-login.html"; // Redirect if not admin
+            }
+        }
+
+        function showResults() {
+            let votes = JSON.parse(localStorage.getItem("votes")) || [];
+            let results = {};
+
+            // Count votes per candidate
+            votes.forEach(vote => {
+                if (results[vote.candidate]) {
+                    results[vote.candidate]++;
+                } else {
+                    results[vote.candidate] = 1;
+                }
+            });
+
+            let resultsTable = document.getElementById("resultsTable");
+            resultsTable.innerHTML = ""; // Clear previous results
+
+            for (let candidate in results) {
+                let row = `<tr><td>${candidate}</td><td>${results[candidate]}</td></tr>`;
+                resultsTable.innerHTML += row;
+            }
+        }
+
+        function clearResults() {
+            if (confirm("Are you sure you want to clear all voting data?")) {
+                localStorage.removeItem("votes");
+                document.getElementById("resultsTable").innerHTML = "";
+                alert("All voting data has been cleared!");
+            }
+        }
+
+        function logoutAdmin() {
+            localStorage.removeItem("isAdmin");
+            alert("Admin Logged Out!");
+            window.location.href = "index.html"; // Redirect to home page
+        }
+
+        checkAdmin(); // Check admin access on page load
+        showResults(); // Display results if admin is logged in
+    </script>
+</body>
+</html>

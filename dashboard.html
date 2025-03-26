@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #e8f5e9; /* Light green background */
+            color: #2e7d32; /* Dark green text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            width: 80%;
+            max-width: 600px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+        h2, h3 {
+            color: #1b5e20;
+        }
+        input, button {
+            display: block; 
+            margin: 15px auto; 
+            padding: 12px;
+            width: 90%;
+            border: 1px solid #81c784;
+            border-radius: 8px;
+            font-size: 18px;
+        }
+        button {
+            background-color: #388e3c;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            border: none;
+        }
+        button:hover {
+            background-color: #2e7d32;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome to E-Voting</h2>
+        <p id="welcomeMessage"></p>
+        <h3>Vote for Your Candidate</h3>
+        <button onclick="vote('Candidate A')">Vote for Candidate A</button>
+        <button onclick="vote('Candidate B')">Vote for Candidate B</button>
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    <script>
+        // Check if user is logged in
+        if (localStorage.getItem("isLoggedIn") !== "true") {
+            alert("You must log in first!");
+            window.location.href = "index.html";
+        }
+
+        document.getElementById("welcomeMessage").innerText = `Hello, ${localStorage.getItem("name")}`;
+
+        function vote(candidate) {
+            let email = localStorage.getItem("email"); // Get logged-in user's email
+            if (!email) {
+                alert("You are not logged in!");
+                return;
+            }
+
+            // Fetch all votes from localStorage
+            let votes = JSON.parse(localStorage.getItem("votes")) || [];
+
+            // Check if this email has already voted
+            let userHasVoted = votes.some(vote => vote.email === email);
+            if (userHasVoted) {
+                alert("You have already voted!");
+                return;
+            }
+
+            // Save the new vote with the email
+            votes.push({ email: email, candidate: candidate });
+
+            // Update localStorage
+            localStorage.setItem("votes", JSON.stringify(votes));
+
+            alert(`You voted for ${candidate}`);
+        }
+
+        function logout() {
+            localStorage.removeItem("isLoggedIn"); // Remove login status
+            localStorage.removeItem("email"); // Remove stored email
+            alert("Logged out successfully!");
+            window.location.href = "index.html"; // Redirect to login page
+        }
+    </script>
+</body>
+</html>
