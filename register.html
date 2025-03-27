@@ -88,43 +88,46 @@
         width: 10px;
         height: 10px;
       }
-      .maincontainer{
+      .maincontainer {
         height: 100%;
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
       }
-      img{
-        margin: 5px;
+      img {
+        margin: 8px;
       }
     </style>
   </head>
-  <body>    <a href="/index.html"><img src="/homeicon.png" alt="home" height="36px" /></a>
+  <body>
+    <a href="/index.html"
+      ><img src="/homeicon.png" alt="home" height="36px"
+    /></a>
     <video class="video-bg" autoplay loop muted>
       <source src="background.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
-<div class="maincontainer">
-    <div class="container">
-      <h2>Register to Vote</h2>
-      <input type="text" id="name" placeholder="Full Name" />
-      <input type="email" id="email" placeholder="Email" />
-      <input type="password" id="password" placeholder="Password" />
-      <input type="number" id="age" placeholder="Age" />
-      <div class="radio-group">
-        <label>
-          <input type="radio" name="votingCard" value="yes" /> I have a voting
-          card issued before
-        </label>
-        <label>
-          <input type="radio" name="votingCard" value="no" /> I do not have a
-          voting card
-        </label>
+    <div class="maincontainer">
+      <div class="container">
+        <h2>Register to Vote</h2>
+        <input type="text" id="name" placeholder="Full Name" />
+        <input type="email" id="email" placeholder="Email" />
+        <input type="password" id="password" placeholder="Password" />
+        <input type="number" id="age" placeholder="Age" />
+        <div class="radio-group">
+          <label>
+            <input type="radio" name="votingCard" value="yes" /> I have a voting
+            card issued before
+          </label>
+          <label>
+            <input type="radio" name="votingCard" value="no" /> I do not have a
+            voting card
+          </label>
+        </div>
+        <button onclick="register()">Register</button>
       </div>
-      <button onclick="register()">Register</button>
     </div>
-</div>
 
     <script>
       function register() {

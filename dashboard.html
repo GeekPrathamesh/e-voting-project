@@ -67,45 +67,48 @@
       button:hover {
         background-color: #2e7d32;
       }
-      .maincontainer{
+      .maincontainer {
         height: 100%;
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
       }
-      img{
-        margin: 5px;
+      img {
+        margin: 8px;
       }
     </style>
   </head>
-  <body>   <a href="/index.html"><img src="/homeicon.png" alt="home" height="36px" /></a>
+  <body>
+    <a href="/index.html"
+      ><img src="/homeicon.png" alt="home" height="36px"
+    /></a>
     <video class="video-bg" autoplay loop muted>
       <source src="background.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
-<div class="maincontainer">
-    <div class="container">
-      <h2>Welcome to E-Voting</h2>
-      <p id="welcomeMessage"></p>
-      <h3>Vote for Your Candidate</h3>
-      <button onclick="vote('NARAYAN RAO RANE - BJP')">
-        Vote for NARAYAN RAO RANE - BJP
-      </button>
-      <button onclick="vote('VINAYAK RAUT - SIVSENA')">
-        Vote for VINAYAK RAUT - SIVSENA'
-      </button>
-      <button onclick="vote('NITESH RANE SAHEB - CONGRESS')">
-        Vote for NITESH RANE SAHEB - CONGRESS
-      </button>
-      <button onclick="vote('NILESH RANE SAHEB - MANASE')">
-        Vote for NILESH RANE SAHEB - MANASE
-      </button>
-      <button onclick="logout()" style="background-color: red; width: 100px">
-        Logout
-      </button>
+    <div class="maincontainer">
+      <div class="container">
+        <h2>Welcome to E-Voting</h2>
+        <p id="welcomeMessage"></p>
+        <h3>Vote for Your Candidate</h3>
+        <button onclick="vote('NARAYAN RAO RANE - BJP')">
+          Vote for NARAYAN RAO RANE - BJP
+        </button>
+        <button onclick="vote('VINAYAK RAUT - SIVSENA')">
+          Vote for VINAYAK RAUT - SIVSENA'
+        </button>
+        <button onclick="vote('NITESH RANE - CONGRESS')">
+          Vote for NITESH RANE SAHEB - CONGRESS
+        </button>
+        <button onclick="vote('NILESH RANE - MANASE')">
+          Vote for NILESH RANE SAHEB - MANASE
+        </button>
+        <button onclick="logout()" style="background-color: red; width: 100px">
+          Logout
+        </button>
+      </div>
     </div>
-</div>
 
     <script>
       // Check if user is logged in
